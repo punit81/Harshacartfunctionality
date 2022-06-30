@@ -1,0 +1,31 @@
+<!--
+<h1>One way data binding</h1>
+<h3>String interpolation</h3>
+<p>
+    {{ demoData}}
+</p>
+
+<p>
+    {{ demoData.toUpperCase()}}
+</p>
+
+<p>
+    {{ 9 + 8}}
+</p>
+
+<h3>Property binding</h3> -->
+<!-- retains the data type-->
+<input type="text" value="{{demoData}}" />
+<input type="text" [value] = "demoData" />
+
+<!-- 
+<p>
+    {{ obj}}
+</p>
+<input type="text" [value]="obj"/> -->
+
+<h1>Event binding</h1>
+<button (click)="showAlert()">Click Me</button>
+
+<h1>Two way data bidning</h1>
+<input type="text" [(ngModel)]="demoData"/> 

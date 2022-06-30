@@ -1,0 +1,23 @@
+<form [formGroup]="linkedinForm">
+    <div>
+        <label>Name</label>
+        <input type="text" appUppercase formControlName="name" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="text" formControlName="email" />
+    </div>
+    <div formArrayName="experiences">
+        <button type="button" (click)="addExperience()">Add</button>
+        <div [formGroupName]="i" *ngFor="let obj of experienceObj.controls; let i = index">
+            <input type="text" formControlName="yrs" appNumbersOnly="2" />
+            <input type="text" formControlName="org" />
+            <button type="button" (click)="removeExperience(i)">X</button>
+        </div>
+    </div>
+    <button type="submit">submit</button>
+</form>
+
+<pre>
+    {{ linkedinForm.value | json }}
+</pre>

@@ -1,0 +1,32 @@
+<button type="button" (click)="loadData()">Load data</button>
+<button type="button" (click)="patchData()">Load Partial data</button>
+<form [formGroup]="checkoutForm" (submit)="submitData()" errorTailor>
+    <div>
+        <label>Name</label>
+        <input type="text" formControlName="name" />
+    </div>
+    <!--<div *ngIf="checkoutForm.get('name')?.touched">
+        <small *ngIf="checkoutForm.get('name')?.hasError('required')">Name is required</small>
+        <small *ngIf="checkoutForm.get('name')?.hasError('minlength')">min 5 chars is required</small>
+    </div> -->
+    <div>
+        <label>Age</label>
+        <input type="text" formControlName="age" />
+    </div>
+    <div>
+        <label>Pincode</label>
+        <input type="text" formControlName="pincode" />
+      <!--  <small *ngIf="checkoutForm.get('pincode')?.hasError('zipcode')">
+            Allowed pincode is
+            {{ checkoutForm.get('pincode')?.getError("zipcode").allowedCode }}
+        </small> -->
+    </div>
+    <pre>
+        {{ checkoutForm.value | json}}
+    </pre>
+    <pre>
+        {{ checkoutForm.get('pincode')?.errors | json}}
+        <!-- {{ checkoutForm.get('age')?.errors | json}} -->
+    </pre>
+    <button type="submit">Submit</button>
+</form>

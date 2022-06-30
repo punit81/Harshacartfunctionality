@@ -1,0 +1,16 @@
+<div *ngIf="data">
+    <img [routerLink]="['/detail',data.productId]" [src]="data.productImage" />
+    <h3>{{ data.productName | uppercase }}</h3>
+    Price: {{ data.productPrice | conversion: currencyCode 
+        | currency: currencyCode }}
+    <br>
+    <label for="quantityValue">Quantity: </label>
+    <input type="number" id="quantityValue" [(ngModel)]= data.productQuantity (change)="notifyParentForCartTotal()">
+    <br>
+    <div id="productTotal" *ngIf="data.productQuantity">
+        <label>Total:</label>
+        {{  data.productQuantity * data.productPrice | conversion: currencyCode 
+        | currency: currencyCode}}
+    </div>
+    <button class="btn btn-primary" (click)="notifyParent()" btn btn-primary>Remove</button>
+</div>

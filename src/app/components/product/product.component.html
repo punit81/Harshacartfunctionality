@@ -1,0 +1,18 @@
+<div *ngIf="data">
+    <img [routerLink]="['/detail',data.productId]"
+    [queryParams]="{ size: 'medium', rating: 4}"
+    [src]="data.productImage" />
+    <h3>{{ data.productName | uppercase }}</h3>
+    <h4>{{ data.productPrice | conversion: currencyCode 
+        | currency: currencyCode }} </h4>
+    <!-- Never user functions in html to display any data -->
+   <!-- {{ discountCalculation() }}
+    {{ data.productPrice | discount }} -->
+
+    <button class="btn btn-primary" (click)="notifyParent()" *ngIf="data.productStock > 0 else stock">Add to Cart</button>
+  <!--  <button *ngIf="data.productStock && data.productStock > 0 else stock">Add to Cart</button> -->
+</div>
+<ng-template #stock>
+    <p>Out of Stock</p>
+</ng-template>
+<!--*ngSwitch-->

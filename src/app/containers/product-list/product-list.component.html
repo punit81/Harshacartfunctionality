@@ -1,0 +1,39 @@
+<app-pagination
+  [current]="current"
+  [total]="total"
+  (goTo)="onGoTo($event)"
+  (next)="onNext($event)"
+  (previous)="onPrevious($event)">
+</app-pagination>
+<br>
+<br>
+<label for="filterString">Filter:</label>
+<!-- <input type="text" id="filterString" [(ngModel)]= filterString/> -->
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" id="filterString" [(ngModel)]= filterString>
+    <label for="filterString">Enter Product name to filter</label>
+  </div>
+
+<button type="button" class="btn btn-outline-primary .btn-sm btn-space"  (click)="setSortAttribute($event,'productName')">Sort by Name</button>
+<button type="button" class="btn btn-outline-primary .btn-sm"  (click)="setSortAttribute($event,'productPrice')">Sort by Price</button>
+
+<div *ngIf="code$ | async; let currentCode" >
+    <div *ngFor="let item of itemsToDisplay | filter: filterString | sortProducts: [sortAttribute] ">
+        <app-product 
+        [currencyCode]="currentCode"
+        (btnClick)="addItem($event)" [data]="item"
+        >
+    </app-product>
+    </div>
+</div>
+
+<!--
+    method1 & 2 
+    <div *ngFor="let item of plist">
+    <app-product 
+    [currencyCode]="selectedCode"
+    (btnClick)="addItem($event)" [data]="item"
+    >
+</app-product>
+</div> -->
+ 
